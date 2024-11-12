@@ -1,4 +1,4 @@
-#bazy danych lab3
+#bazy danych lab3#
 ## Zadanie 1
 ###1.
 ```CREATE TABLE postac (
