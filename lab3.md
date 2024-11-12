@@ -85,10 +85,10 @@ CHANGE COLUMN kolor kolor VARCHAR(30) NULL DEFAULT 'czarny' ;
 ```
 CREATE TABLE przetwory(
 	id_przetworu TINYINT NOT NULL PRIMARY KEY,
-    rok_produkcji SMALLINT DEFAULT(1654),
-    id_wykonawcy INT NOT NULL,
-    zawartosc VARCHAR(45),
-    dodatek VARCHAR(45) DEFAULT('papryczka chili'),
+ rok_produkcji SMALLINT DEFAULT(1654),
+ id_wykonawcy INT NOT NULL,
+ zawartosc VARCHAR(45),
+ dodatek VARCHAR(45) DEFAULT('papryczka chili'),
     id_konsumenta INT NOT NULL
 );
 
@@ -117,9 +117,9 @@ VALUES (DEFAULT, 'Wiking_1', 'wiking', '1973-04-25', 37),
 ```
 CREATE TABLE statek(
 	nazwa_statku VARCHAR(50) NOT NULL PRIMARY KEY,
-    rodzaj_statku ENUM('slup','brygantyna','galeon'),
-    data_wodowania date,
-    max_ladownosc SMALLINT UNSIGNED
+ rodzaj_statku ENUM('slup','brygantyna','galeon'),
+ data_wodowania date,
+ max_ladownosc SMALLINT UNSIGNED
 );
 ```
 
