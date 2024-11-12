@@ -7,7 +7,7 @@
   rodzaj ENUM('wiking', 'ptak', 'kobieta'),
   data_ur DATE,
   wiek SMALLINT UNSIGNED
-);```
+); ```
 
 ### 2.
 ```INSERT INTO postac ('id_postaci', 'nazwa', 'rodzaj', data_ur', 'wiek')
