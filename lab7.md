@@ -36,7 +36,12 @@ INNER JOIN kreatura AS k ON k.idKreatury = u.id_uczestnika
 GROUP BY w.nazwa;
 ```
 ### 2.
-jeszcze do zrobienia
+```
+SELECT idEtapu, sektor FROM etapy_wyprawy AS e
+INNER JOIN wyprawa AS w ON w.id_wyprawy = e.idWyprawy
+INNER JOIN sektor AS s ON s.id_sektora = e.sektor
+ORDER BY data_rozpoczecia, kolejnosc;
+```
 ## zadanie 3
 ### 1.
 ```
