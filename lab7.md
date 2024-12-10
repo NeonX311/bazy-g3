@@ -54,21 +54,19 @@ GROUP BY k.nazwa
 ```
 ## zadanie 4
 ### 1.
-do poprawy (wyświetla tylko 2 z 3 wypraw)
 ```
-SELECT w.nazwa, SUM(LENGTH(e.dziennik)) AS liczba_znakow FROM wyprawa AS w
-INNER JOIN etapy_wyprawy AS e ON e.idWyprawy = w.id_wyprawy
+SELECT w.nazwa, SUM(LENGTH(e.dziennik)) AS dlugosc_dziennika FROM wyprawa AS w
+RIGHT JOIN etapy_wyprawy AS e ON w.id_wyprawy = e.idWyprawy
 GROUP BY w.nazwa
-HAVING SUM(LENGTH(e.dziennik)) < 400;
+HAVING dlugosc_dziennika < 400
 ```
 ### 2.
-do skończenia (nie działa)
 ```
-SELECT w.nazwa, (z.waga*z.ilosc)/COUNT(u.id_uczestnika) AS srednia_waga_zasobow FROM wyprawa AS w
-INNER JOIN uczestnicy AS u ON w.id_wyprawy = u.id_uczestnika
+SELECT w.nazwa, (SUM(z.waga * e.ilosc)/COUNT(DISTINCT(u.id_uczestnika))) FROM wyprawa AS w
+INNER JOIN uczestnicy AS u ON w.id_wyprawy = u.id_wyprawy
 INNER JOIN kreatura AS k ON u.id_uczestnika = k.idKreatury
-INNER JOIN ekwipunek AS e ON e.idKreatury = k.idKreatury
-INNER JOIN zasob AS z ON z.idZasobu = e.idZasobu
+INNER JOIN ekwipunek AS e ON k.idKreatury = e.idKreatury
+INNER JOIN zasob AS z ON e.idZasobu = z.idZasobu
 GROUP BY w.nazwa
 ```
 ## zadanie 5
