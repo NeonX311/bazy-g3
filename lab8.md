@@ -93,27 +93,28 @@ CREATE TABLE system_alarmowy(
 ```
 DELIMITER //
 
-CREATE TRIGGER wyprawa_after_insert
-AFTER INSERT ON wyprawa
+CREATE TRIGGER uczestnicy_after_insert
+AFTER INSERT ON uczestnicy
 FOR EACH ROW
 BEGIN
-    DECLARE is_matching INT;
+    DECLARE postac varchar(100);
+    DECLARE has_postac bool;
+    SET postac = 'Tesciowa';
 
-    SELECT COUNT(*)
-    INTO is_matching
-    FROM uczestnicy AS u
-    INNER JOIN kreatura AS k ON k.idKreatury = u.id_uczestnika
-    INNER JOIN etapy_wyprawy AS e ON e.idWyprawy = NEW.id_wyprawy
-    INNER JOIN sektor AS s ON s.id_sektora = e.sektor
-    WHERE k.nazwa = 'tesciowa'
-      AND s.nazwa = 'Chatka dziadka';
+    IF postac in (
+	SELECT nazwa from kreatura WHERE idKreatury in 
+	    (SELECT id_uczestnika from uczestnicy where id_wyprawy=NEW.id_wyprawy AND sektor.nazwa = 'Chatka dziadka')) 
+    THEN 
+        SET has_postac = true;
+	END IF;
+    
+    IF has_postac
+    THEN 
+	INSERT INTO system_alarmowy
+        VALUES ('Teściowa nadchodzi !!!')
+END IF;
 
-    IF is_matching > 0 THEN
-        INSERT INTO system_alarmowy (wiadomosc) 
-        VALUES ('Teściowa nadchodzi !!!');
-    END IF;
-END;
-//
+END//
 DELIMITER ;
 ```
 ## zadanie 5
