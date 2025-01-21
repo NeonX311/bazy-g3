@@ -25,7 +25,7 @@ CREATE TABLE student_na_kierunku
 (
     student INT UNSIGNED,
     kierunek INT UNSIGNED,
-    #FOREIGN KEY (student) REFERENCES student(id_studenta),
+    FOREIGN KEY (student) REFERENCES student(id_studenta),
     FOREIGN KEY (kierunek) REFERENCES kierunek(id_kierunku),
     PRIMARY KEY (student,kierunek)
 );
